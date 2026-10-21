@@ -1,10 +1,10 @@
 {
-  "name": "infinite-leads-system",
+  "name": "unlimited-leads-system",
   "version": "1.0.0",
   "description": "Sales Navigator saved searches with intent filters, Evaboot recurring exports and outreach campaigns, set up by your agent through the Evaboot MCP server.",
   "author": { "name": "Evaboot", "url": "https://evaboot.com" },
-  "homepage": "https://evaboot.com/guides/infinite-leads",
-  "repository": "https://github.com/evaboot-labs/infinite-leads-system",
+  "homepage": "https://evaboot.com/guides/unlimited-leads",
+  "repository": "https://github.com/evaboot-labs/unlimited-leads-system",
   "license": "MIT",
   "privacyPolicyUrl": "https://evaboot.com/privacy-policy",
   "keywords": ["sales-navigator", "lead-generation", "evaboot", "mcp"],

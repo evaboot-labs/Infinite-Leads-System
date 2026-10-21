@@ -10,7 +10,7 @@ on:
 jobs:
   refresh:
     # The template itself has no key or signals.json; only your copy runs.
-    if: github.repository != 'evaboot-labs/infinite-leads-system'
+    if: github.repository != 'evaboot-labs/unlimited-leads-system'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,4 +20,4 @@ jobs:
       - name: Refresh account lists
         env:
           EVABOOT_API_KEY: ${{ secrets.EVABOOT_API_KEY }}
-        run: python3 infinite_leads.py refresh
+        run: python3 unlimited_leads.py refresh

@@ -1,4 +1,4 @@
 __pycache__/
 .env
-n8n/infinite-leads-*.n8n.json
-!n8n/infinite-leads-to-lemlist.n8n.json
+n8n/unlimited-leads-*.n8n.json
+!n8n/unlimited-leads-to-lemlist.n8n.json

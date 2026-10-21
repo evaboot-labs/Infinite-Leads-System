@@ -3,14 +3,14 @@
   <img src=".github/assets/banner-light.png" alt="Sales Navigator saved search, Evaboot recurring export, any outreach tool, closed deals: a new batch of leads every week" width="1280">
 </picture>
 
-# The Infinite Leads System
+# The Unlimited Leads System
 
 Never run out of qualified leads. Sales Navigator finds them, Evaboot exports only the new ones every week, and your outreach tool contacts them.
 
 [![Works with Claude Code · Codex · Cursor](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-5719D9)](AGENTS.md)
 [![MCP server](https://img.shields.io/badge/MCP-mcp.evaboot.com-5719D9)](https://evaboot.com/mcp)
 [![License: MIT](https://img.shields.io/badge/license-MIT-5719D9)](LICENSE)
-[![Use this template](https://img.shields.io/badge/template-use%20this%20template-5719D9)](https://github.com/evaboot-labs/infinite-leads-system/generate)
+[![Use this template](https://img.shields.io/badge/template-use%20this%20template-5719D9)](https://github.com/evaboot-labs/unlimited-leads-system/generate)
 
 [![An AI Agent builds a Sales Navigator search and a weekly Evaboot export, then shows the check table](.github/assets/demo.gif)](.github/assets/demo.mp4)
 
@@ -21,9 +21,9 @@ Never run out of qualified leads. Sales Navigator finds them, Evaboot exports on
 Paste this into Claude Code, Codex or Cursor:
 
 ```text
-Set up the Evaboot Infinite Leads System for me.
-Clone https://github.com/evaboot-labs/infinite-leads-system, read AGENTS.md and follow the
-evaboot-infinite-leads-system skill. Use the Evaboot MCP server at https://mcp.evaboot.com/mcp.
+Set up the Evaboot Unlimited Leads System for me.
+Clone https://github.com/evaboot-labs/unlimited-leads-system, read AGENTS.md and follow the
+evaboot-unlimited-leads-system skill. Use the Evaboot MCP server at https://mcp.evaboot.com/mcp.
 If I have no Evaboot account yet, walk me through creating one first. Ask me about my ideal
 customer and my outreach tool, and confirm with me before you save any search, list or
 recurring export.
@@ -35,14 +35,14 @@ recurring export.
 Claude Code:
 
 ```text
-/plugin marketplace add evaboot-labs/infinite-leads-system
-/plugin install infinite-leads-system@evaboot-labs-infinite-leads-system
+/plugin marketplace add evaboot-labs/unlimited-leads-system
+/plugin install unlimited-leads-system@evaboot-labs-unlimited-leads-system
 ```
 
 Codex, Cursor and other agents:
 
 ```bash
-npx skills add evaboot-labs/infinite-leads-system
+npx skills add evaboot-labs/unlimited-leads-system
 ```
 
 </details>
@@ -68,11 +68,11 @@ npx skills add evaboot-labs/infinite-leads-system
   <img src=".github/assets/signals-light.png" alt="Four lead signals, each with its opener: following your company, viewed your profile, changed jobs, posted on LinkedIn" width="1280">
 </picture>
 
-Each signal gets its own saved search, recurring export and campaign, with copy written for the reason you are reaching out now: [intent-filters.md](skills/evaboot-infinite-leads-system/references/intent-filters.md).
+Each signal gets its own saved search, recurring export and campaign, with copy written for the reason you are reaching out now: [intent-filters.md](skills/evaboot-unlimited-leads-system/references/intent-filters.md).
 
 ## What you need
 
-- **An Evaboot account.** [Create one](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo), or paste the prompt and your agent walks you through sign-up.
+- **An Evaboot account.** [Create one](https://dash.evaboot.com/accounts/signup/?last_click_origin=unlimited-leads-repo), or paste the prompt and your agent walks you through sign-up.
 - **LinkedIn Sales Navigator**, connected with the [Evaboot Chrome extension](https://dash.evaboot.com/install/).
 - **Any outreach tool.** lemlist and Instantly connect in Evaboot under [Integrations](https://dash.evaboot.com/dash/integrations/); any other tool works through [Make](docs/make.md) or [n8n](docs/n8n.md).
 - **An AI Agent that speaks MCP:** Claude Code, Codex, Cursor, or Claude and ChatGPT with a connector.

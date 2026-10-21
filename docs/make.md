@@ -1,6 +1,6 @@
 # Send leads through Make
 
-[`make/infinite-leads-to-lemlist.blueprint.json`](https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/make/infinite-leads-to-lemlist.blueprint.json)
+[`make/unlimited-leads-to-lemlist.blueprint.json`](https://raw.githubusercontent.com/evaboot-labs/unlimited-leads-system/main/make/unlimited-leads-to-lemlist.blueprint.json)
 is a Make scenario for one lead signal. Evaboot sends each run of the recurring export to the
 scenario's webhook, and the scenario adds every lead with an email to your lemlist campaign. Leads
 already in the campaign, or unsubscribed in lemlist, are skipped. If lemlist refuses a lead for any
