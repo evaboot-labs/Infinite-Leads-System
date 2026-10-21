@@ -9,6 +9,8 @@ on:
 
 jobs:
   refresh:
+    # The template itself has no key or signals.json; only your copy runs.
+    if: github.repository != 'evaboot-labs/Infinite-Leads-System'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
