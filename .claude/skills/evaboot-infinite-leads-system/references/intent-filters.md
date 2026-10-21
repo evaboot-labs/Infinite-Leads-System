@@ -37,7 +37,7 @@ Sales Navigator lead search, groups **Buyer intent** and **Recent updates**. Ask
 
 ## Account signals
 
-Sales Navigator account search (**Spotlights**, **Company attributes**). These go through an account list: see the skill, step 4.
+Sales Navigator account search (**Spotlights**, **Company attributes**). These go through an account list: see the skill, section "Extra: company signals through an account list".
 
 ### Hiring on LinkedIn
 

@@ -1,0 +1,193 @@
+{
+  "name": "Infinite Leads: new leads to a lemlist campaign",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": null,
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0,
+          "name": "New leads from Evaboot"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "util:SetVariables",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "scope": "roundtrip",
+        "variables": [
+          {
+            "name": "lemlist_api_key",
+            "value": "YOUR_LEMLIST_API_KEY"
+          },
+          {
+            "name": "lemlist_campaign_id",
+            "value": "YOUR_LEMLIST_CAMPAIGN_ID"
+          }
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0,
+          "name": "Your settings"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "array": "{{1.prospects}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0,
+          "name": "One lead at a time"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "filter": {
+        "name": "Leads with an email",
+        "conditions": [
+          [
+            {
+              "a": "{{3.Email}}",
+              "o": "exist"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "url": "https://api.lemlist.com/api/campaigns/{{2.lemlist_campaign_id}}/leads/{{encodeURL(3.Email)}}",
+        "serializeUrl": false,
+        "method": "post",
+        "headers": [],
+        "qs": [
+          {
+            "name": "deduplicate",
+            "value": "true"
+          }
+        ],
+        "bodyType": "x_www_form_urlencoded",
+        "parseResponse": false,
+        "authUser": "",
+        "authPass": "{{2.lemlist_api_key}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "formFields": [
+          {
+            "key": "firstName",
+            "value": "{{3.`First Name`}}"
+          },
+          {
+            "key": "lastName",
+            "value": "{{3.`Last Name`}}"
+          },
+          {
+            "key": "jobTitle",
+            "value": "{{3.`Current Job`}}"
+          },
+          {
+            "key": "companyName",
+            "value": "{{3.`Company Name`}}"
+          },
+          {
+            "key": "companyDomain",
+            "value": "{{3.`Company Domain`}}"
+          },
+          {
+            "key": "linkedinUrl",
+            "value": "{{3.`Linkedin URL Public`}}"
+          }
+        ],
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0,
+          "name": "Add the lead to the campaign"
+        }
+      },
+      "onerror": [
+        {
+          "id": 5,
+          "module": "builtin:Ignore",
+          "version": 1,
+          "parameters": {},
+          "mapper": null,
+          "filter": {
+            "name": "Already in lemlist or unsubscribed",
+            "conditions": [
+              [
+                {
+                  "a": "{{4.error.detail}}",
+                  "b": "already",
+                  "o": "text:contain:ci"
+                }
+              ],
+              [
+                {
+                  "a": "{{4.error.detail}}",
+                  "b": "graveyard",
+                  "o": "text:contain:ci"
+                }
+              ]
+            ]
+          },
+          "metadata": {
+            "designer": {
+              "x": 1200,
+              "y": 150,
+              "name": "Skip leads lemlist already has"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": true
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}
