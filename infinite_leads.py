@@ -42,7 +42,11 @@ def call(tool, arguments):
     """Call one Evaboot MCP tool and return its result payload."""
     key = os.environ.get("EVABOOT_API_KEY")
     if not key:
-        sys.exit("EVABOOT_API_KEY is missing. Copy .env.example to .env and add your key (README, step 2).")
+        sys.exit(
+            "EVABOOT_API_KEY is missing. Copy .env.example to .env and add the key from "
+            "https://dash.evaboot.com/dash/api/ (no account yet: "
+            "https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo)."
+        )
     body = json.dumps(
         {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": tool, "arguments": arguments}}
     ).encode()

@@ -29,14 +29,15 @@ Paste it into Claude Code, Codex or Cursor:
 Set up the Evaboot Infinite Leads System for me.
 Clone https://github.com/evaboot-labs/Infinite-Leads-System, read AGENTS.md and follow the
 evaboot-infinite-leads-system skill. Use the Evaboot MCP server at https://mcp.evaboot.com/mcp.
-Ask me about my ideal customer and my outreach tool, and confirm with me before you save
-any search, list or recurring export.
+If I have no Evaboot account yet, walk me through creating one first. Ask me about my ideal
+customer and my outreach tool, and confirm with me before you save any search, list or
+recurring export.
 ```
 
 ## What you need
 
-- **LinkedIn Sales Navigator**, connected to Evaboot with the [Evaboot Chrome extension](https://evaboot.com).
-- **An Evaboot account** with credits. Each recurring run spends credits for the leads it finds.
+- **An Evaboot account.** No account yet? [Create one](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo), or just paste the prompt: your agent walks you through sign-up first. Each recurring run spends credits for the leads it finds.
+- **LinkedIn Sales Navigator**, connected to Evaboot with the [Evaboot Chrome extension](https://dash.evaboot.com/install/).
 - **lemlist or Instantly**, connected once in Evaboot under
   [Integrations](https://dash.evaboot.com/dash/integrations/). Evaboot pushes every new batch into the campaign you pick.
 - **An AI agent** that speaks MCP: Claude Code, Codex, Cursor, or Claude and ChatGPT with a connector.
@@ -44,8 +45,9 @@ any search, list or recurring export.
 
 ## Setup
 
-1. **Get the repo.** Click **Use this template** to make your own private copy, then clone it.
-2. **Connect the Evaboot MCP server.** Copy your API key from
+1. **Create your Evaboot account** at [dash.evaboot.com](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo) and install the [Chrome extension](https://dash.evaboot.com/install/) to connect Sales Navigator.
+2. **Get the repo.** Click **Use this template** to make your own private copy, then clone it.
+3. **Connect the Evaboot MCP server.** Copy your API key from
    [dash.evaboot.com/dash/api/](https://dash.evaboot.com/dash/api/), then:
    ```bash
    cp .env.example .env          # paste the key after EVABOOT_API_KEY=
@@ -55,8 +57,8 @@ any search, list or recurring export.
    - **Codex:** `codex mcp add evaboot --url https://mcp.evaboot.com/mcp --bearer-token-env-var EVABOOT_API_KEY`
    - **Cursor:** add `https://mcp.evaboot.com/mcp` with the header `Authorization: Bearer <your key>`.
    - **Claude or ChatGPT on the web:** add `https://mcp.evaboot.com/mcp` as a custom connector and sign in.
-3. **Describe who you sell to** in [`ICP.md`](ICP.md), or let your agent ask you.
-4. **Check:**
+4. **Describe who you sell to** in [`ICP.md`](ICP.md), or let your agent ask you.
+5. **Check:**
    ```bash
    python3 infinite_leads.py check
    ```

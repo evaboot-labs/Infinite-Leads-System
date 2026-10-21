@@ -23,9 +23,20 @@ You do it all through the Evaboot MCP server (`https://mcp.evaboot.com/mcp`). Ev
 - Print every Sales Navigator URL as a Markdown link with the URL in angle brackets: `[Open the search in Sales Navigator](<url>)`.
 - Each recurring run spends Evaboot credits for the leads it finds. Say so before the first one is created.
 
-## Step 0: check the setup
+## Step 0: get the user an Evaboot account and connect it
 
-1. Call `verify_token` and `get_daily_export_quota`. `has_valid_salesnav` must be true. If it is false, the user has to connect Sales Navigator with the Evaboot Chrome extension first; stop and tell them.
+Most users start without an Evaboot account. Ask first: "Do you already have an Evaboot account with Sales Navigator connected?" If the Evaboot MCP tools are not available in this session, assume the answer is no.
+
+If they have no account, walk them through it one step at a time and wait for each "done":
+
+1. **Create the account:** send them to [https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo).
+2. **Connect Sales Navigator:** they install the Evaboot Chrome extension from [dash.evaboot.com/install/](https://dash.evaboot.com/install/) and follow its steps to connect their Sales Navigator account. They need an active Sales Navigator seat.
+3. **Get the API key:** they copy it from [dash.evaboot.com/dash/api/](https://dash.evaboot.com/dash/api/) and paste it after `EVABOOT_API_KEY=` in `.env` (copy `.env.example` first). Do not ask them to paste the key in the chat.
+4. **Connect the MCP server:** give them the line for their client from README.md, step 3, then ask them to restart the agent session in this folder so the Evaboot tools load. Claude and ChatGPT on the web sign in through the browser instead and need no key.
+
+Then check the setup:
+
+1. Call `verify_token` and `get_daily_export_quota`. `has_valid_salesnav` must be true; if it is false, send them back to step 2 above. If `credits` is 0, tell them each recurring run spends credits for the leads it finds and send them to [dash.evaboot.com/dash/pricing/](https://dash.evaboot.com/dash/pricing/).
 2. Call `list_integrations`. Look for a row of type `lemlist` or `instantly`. If neither is there, send the user to https://dash.evaboot.com/dash/integrations/providers/lemlist/connect/ (or `/instantly/connect/`) to connect it with their own API key, and wait.
 3. Read `ICP.md` in this repo. If it still holds the example, interview the user and rewrite it: who they sell to (job titles, seniority, company size, industry, geography), what they sell, and which outreach tool they use.
 
