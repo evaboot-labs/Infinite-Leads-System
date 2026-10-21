@@ -671,7 +671,7 @@ git commit -m "Rewrite the README: banner, demo, one prompt, screenshots, docs l
 - Delete: `docs/specs/2026-10-21-evaboot-labs-repo-standard-design.md`
 - Delete: `docs/plans/2026-10-21-evaboot-labs-repo-standard.md`
 
-Everything in this task that needs GitHub runs against the pushed work branch `2026-10-21-evaboot-labs-repo-standard`. Pushing the work branch needs no permission (project git autonomy); merging does.
+Everything in this task that needs GitHub runs against the pushed work branch `jbjzq/2026-10-21-evaboot-labs-repo-standard`. Pushing the work branch needs no permission (project git autonomy); merging does.
 
 - [ ] **Step 1: Review the docs**
 
@@ -689,17 +689,17 @@ Expected: `SIZES-OK`.
 - [ ] **Step 3: Push the work branch**
 
 ```bash
-git push -u origin 2026-10-21-evaboot-labs-repo-standard
+git push -u origin jbjzq/2026-10-21-evaboot-labs-repo-standard
 ```
 
 - [ ] **Step 4: The README renders in both themes (spec Verification 5)**
 
-With `browser-screen-control`, open `https://github.com/evaboot-labs/infinite-leads-system/blob/2026-10-21-evaboot-labs-repo-standard/README.md`. Screenshot the full page with GitHub's theme set to light, then to dark (Settings → Appearance, or the `prefers-color-scheme` emulation the skill offers). In each, every image must render: the banner, the demo GIF, the three screenshots, the signals figure and the four badges, with no broken-image icon or alt text in their place, and the dark screenshot must show `banner-dark.png` and `signals-dark.png`. Save both screenshots to `/tmp/ils-readme-light.png` and `/tmp/ils-readme-dark.png`.
+With `browser-screen-control`, open `https://github.com/evaboot-labs/infinite-leads-system/blob/jbjzq/2026-10-21-evaboot-labs-repo-standard/README.md`. Screenshot the full page with GitHub's theme set to light, then to dark (Settings → Appearance, or the `prefers-color-scheme` emulation the skill offers). In each, every image must render: the banner, the demo GIF, the three screenshots, the signals figure and the four badges, with no broken-image icon or alt text in their place, and the dark screenshot must show `banner-dark.png` and `signals-dark.png`. Save both screenshots to `/tmp/ils-readme-light.png` and `/tmp/ils-readme-dark.png`.
 
 - [ ] **Step 5: The plugin installs from the pushed branch (spec Verification 2 and 3)**
 
 ```bash
-T=$(mktemp -d) && git clone -q --branch 2026-10-21-evaboot-labs-repo-standard https://github.com/evaboot-labs/infinite-leads-system "$T/repo" && cd "$T/repo" \
+T=$(mktemp -d) && git clone -q --branch jbjzq/2026-10-21-evaboot-labs-repo-standard https://github.com/evaboot-labs/infinite-leads-system "$T/repo" && cd "$T/repo" \
   && claude plugin validate .claude-plugin/marketplace.json && claude plugin validate . && cd -
 ```
 
@@ -707,7 +707,7 @@ Expected: both validations pass. Then, with `use-interactive-terminal`, start a 
 
 - [ ] **Step 6: An agent sets up from the prompt alone (spec Verification 6)**
 
-With `use-interactive-terminal`, in a new empty temp folder, start a fresh `claude` session (no plugin installed, JB's normal config). Paste the README's "Set it up in one prompt" text, with one line added at the end: `Use the branch 2026-10-21-evaboot-labs-repo-standard when you clone.` Answer its questions with the same ICP as the demo (VP of Sales, software, 51-200, Luxembourg, Changed jobs). Stop the session at its first confirmation question, before any call that saves a search, list, recurring export or destination: answer "no, stop here". Expected: the transcript shows it read `AGENTS.md` and `skills/evaboot-infinite-leads-system/SKILL.md`, and no write call ran. Save the transcript to `/tmp/ils-prompt-only.txt`. If the agent writes anything before asking, that is a failure: undo the write as in Task 5 Step 11 and fix AGENTS.md or the skill.
+With `use-interactive-terminal`, in a new empty temp folder, start a fresh `claude` session (no plugin installed, JB's normal config). Paste the README's "Set it up in one prompt" text, with one line added at the end: `Use the branch jbjzq/2026-10-21-evaboot-labs-repo-standard when you clone.` Answer its questions with the same ICP as the demo (VP of Sales, software, 51-200, Luxembourg, Changed jobs). Stop the session at its first confirmation question, before any call that saves a search, list, recurring export or destination: answer "no, stop here". Expected: the transcript shows it read `AGENTS.md` and `skills/evaboot-infinite-leads-system/SKILL.md`, and no write call ran. Save the transcript to `/tmp/ils-prompt-only.txt`. If the agent writes anything before asking, that is a failure: undo the write as in Task 5 Step 11 and fix AGENTS.md or the skill.
 
 - [ ] **Step 7: Write the PR description**
 
@@ -715,7 +715,7 @@ Write `$(git rev-parse --git-dir)/pr-body.md` (inside `.git`, so it is never com
 1. One paragraph: what changed and why (the repo standard, P1 of three; P2 and P3 follow after merge).
 2. **The repo standard checklist**, every item ticked `- [x]` with a one-line proof, one item per line of the spec's "File layout", "README section order", "AGENTS.md" and "Copy rules" sections. Items that do not apply say so in the line and are still ticked (for example the repo has `.mcp.json`, so that item applies). Note the two additions: `docs/connect-your-agent.md` and `.github/assets/src/`.
 3. **Verification results:** spec items 2, 3, 5, 6, 7 and 10, each with its command output or a pasted excerpt (the `/plugin` listing, the prompt-only transcript excerpt showing AGENTS.md and the skill being read and the stop at the first confirmation, the `CLEAN` line). Attach the two README screenshots and the saved-searches "after" screenshot by dragging them into the PR on github.com after it opens (with `browser-screen-control` + `bb_upload`).
-4. **For JB:** spec item 4, verbatim: "Run `npx skills add . --list` in a clone of this branch (or `npx skills add https://github.com/evaboot-labs/infinite-leads-system/tree/2026-10-21-evaboot-labs-repo-standard --list`) and check it lists `evaboot-infinite-leads-system`." Plus: "After the merge, the social preview is set from `banner-light.png` (see the plan's Rollout)."
+4. **For JB:** spec item 4, verbatim: "Run `npx skills add . --list` in a clone of this branch (or `npx skills add https://github.com/evaboot-labs/infinite-leads-system/tree/jbjzq/2026-10-21-evaboot-labs-repo-standard --list`) and check it lists `evaboot-infinite-leads-system`." Plus: "After the merge, the social preview is set from `banner-light.png` (see the plan's Rollout)."
 
 - [ ] **Step 8: Strip the internal spec and plan from the branch**
 
@@ -742,7 +742,7 @@ Spec Verification 11 and 12 belong to P2 (the skill) and are not graded here. It
 ```json
 {"items": [
   {"id": "ils-standard-checklist", "text": "The repo meets the standard: the merged PR description carries the repo standard checklist, every item ticked", "when": "merge",
-   "check": {"type": "command", "run": "body=$(gh pr list --repo evaboot-labs/infinite-leads-system --state merged --head 2026-10-21-evaboot-labs-repo-standard --json body --jq '.[0].body') && echo \"$body\" | grep -q -- '- \\[x\\]' && ! echo \"$body\" | grep -q -- '- \\[ \\]'", "timeout": 60}},
+   "check": {"type": "command", "run": "body=$(gh pr list --repo evaboot-labs/infinite-leads-system --state merged --head jbjzq/2026-10-21-evaboot-labs-repo-standard --json body --jq '.[0].body') && echo \"$body\" | grep -q -- '- \\[x\\]' && ! echo \"$body\" | grep -q -- '- \\[ \\]'", "timeout": 60}},
   {"id": "ils-plugin-validate", "text": "The plugin manifest is valid", "when": "merge",
    "check": {"type": "command", "run": "claude plugin validate .claude-plugin/marketplace.json && claude plugin validate .", "timeout": 120}},
   {"id": "ils-plugin-install", "text": "The plugin install works in Claude Code and lists the skill", "when": "merge",
@@ -753,7 +753,7 @@ Spec Verification 11 and 12 belong to P2 (the skill) and are not graded here. It
    "check": {"type": "command", "run": "python3 -c \"import os,re,sys;t=open('README.md').read();p=[a or b for a,b in re.findall(r'(?:src|srcset)=\\\"([^\\\"]+)\\\"|\\]\\(([^)#\\s]+)\\)',t)];bad=[x for x in p if not x.startswith(('http','mailto:')) and not os.path.exists(x)];print(bad);sys.exit(1 if bad or t.count('prefers-color-scheme: dark')<2 else 0)\"", "timeout": 60}},
   {"id": "ils-prompt-only-setup", "text": "An agent can set up from the prompt alone", "when": "merge",
    "check": {"type": "jev", "question": "Does this pull request description show a fresh agent session, given only the README prompt, that read AGENTS.md and the evaboot-infinite-leads-system skill and stopped at its first confirmation question before any write call?",
-             "evidence": "gh pr list --repo evaboot-labs/infinite-leads-system --state merged --head 2026-10-21-evaboot-labs-repo-standard --json body --jq '.[0].body'",
+             "evidence": "gh pr list --repo evaboot-labs/infinite-leads-system --state merged --head jbjzq/2026-10-21-evaboot-labs-repo-standard --json body --jq '.[0].body'",
              "why_not_command": "whether a transcript excerpt shows the agent reading the right files and stopping before writing is a judgment on prose, not an exit code", "timeout": 120}},
   {"id": "ils-sizes", "text": "Sizes are within limits", "when": "merge",
    "check": {"type": "command", "run": "[ \"$(wc -c < README.md)\" -lt 5120 ] && [ \"$(wc -l < AGENTS.md)\" -lt 60 ] && [ \"$(wc -c < .github/assets/demo.gif)\" -lt 5242880 ] && [ \"$(wc -c < .github/assets/banner-light.png)\" -lt 1048576 ]", "timeout": 30}},
