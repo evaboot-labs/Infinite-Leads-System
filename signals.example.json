@@ -1,0 +1,10 @@
+{
+  "account_signals": [
+    {
+      "name": "Infinite Leads · Hiring",
+      "account_search_url": "https://www.linkedin.com/sales/search/company?query=(filters%3AList((type%3ACOMPANY_HEADCOUNT%2Cvalues%3AList((id%3AD%2Ctext%3A51-200%2CselectionType%3AINCLUDED)))%2C(type%3AREGION%2Cvalues%3AList((id%3A105015875%2CselectionType%3AINCLUDED)))%2C(type%3AJOB_OPPORTUNITIES%2Cvalues%3AList((id%3AJO1%2CselectionType%3AINCLUDED)))))",
+      "account_list_id": "0000000000000000000",
+      "max_accounts": 1000
+    }
+  ]
+}
