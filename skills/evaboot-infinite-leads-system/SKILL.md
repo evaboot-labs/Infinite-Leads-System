@@ -5,7 +5,7 @@ description: Set up the Evaboot Infinite Leads System for the user - Sales Navig
 
 # Evaboot Infinite Leads System
 
-This skill runs inside a clone of https://github.com/evaboot-labs/infinite-leads-system: it uses the repo's `infinite_leads.py`, `ICP.md`, README.md and the Make and n8n files. If `infinite_leads.py` is not in the working directory, clone the repo and work from there.
+This skill runs inside a clone of https://github.com/evaboot-labs/infinite-leads-system: it uses the repo's `infinite_leads.py`, `ICP.md`, the `docs/` pages and the Make and n8n files. If `infinite_leads.py` is not in the working directory, clone the repo and work from there.
 
 The system is three pieces wired together, and the fourth is the result:
 
@@ -36,7 +36,7 @@ If they have no account, walk them through it one step at a time and wait for ea
 1. **Create the account:** send them to [https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo).
 2. **Connect Sales Navigator:** they install the Evaboot Chrome extension from [dash.evaboot.com/install/](https://dash.evaboot.com/install/) and follow its steps to connect their Sales Navigator account. They need an active Sales Navigator seat.
 3. **Get the API key:** they copy it from [dash.evaboot.com/dash/api/](https://dash.evaboot.com/dash/api/) and paste it after `EVABOOT_API_KEY=` in `.env` (copy `.env.example` first). Do not ask them to paste the key in the chat.
-4. **Connect the MCP server:** give them the line for their client from README.md, step 3, then ask them to restart the agent session in this folder so the Evaboot tools load. Claude and ChatGPT on the web sign in through the browser instead and need no key.
+4. **Connect the MCP server:** give them the line for their client from `docs/connect-your-agent.md`, step 3, then ask them to restart the agent session in this folder so the Evaboot tools load. Claude and ChatGPT on the web sign in through the browser instead and need no key.
 
 Then check the setup:
 
@@ -75,7 +75,7 @@ One campaign per signal, so the copy matches the reason for reaching out.
 
 One Make scenario per signal, from `make/infinite-leads-to-lemlist.blueprint.json` (https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/make/infinite-leads-to-lemlist.blueprint.json). It receives each run on a webhook and adds every lead with an email to one lemlist campaign. For each recurring export:
 
-1. Walk the user through README.md, section "Make", steps 1 and 2: import the blueprint, add the webhook on **New leads from Evaboot**, and paste you the webhook URL (`https://hook.<zone>.make.com/...`). A webhook URL is not a secret.
+1. Walk the user through `docs/make.md`, steps 1 and 2: import the blueprint, add the webhook on **New leads from Evaboot**, and paste you the webhook URL (`https://hook.<zone>.make.com/...`). A webhook URL is not a secret.
 2. After a yes, call `connect_integration` with `type: "make"`, `url` (the webhook URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to switch the scenario on, then call `test_integration`.
 3. The user fills in **Your settings** in Make: their lemlist API key and the campaign id (`cam_...` in the campaign's URL). Never ask them to paste the lemlist key to you.
 4. The user switches the scenario on. Make's free plan runs two active scenarios, so with more than two signals they need a paid plan or one shared campaign.
@@ -86,7 +86,7 @@ The blueprint targets lemlist. For another tool, the user swaps **Add the lead t
 
 One n8n workflow per signal, from `n8n/infinite-leads-to-lemlist.n8n.json` (https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/n8n/infinite-leads-to-lemlist.n8n.json). It does what the Make scenario does. For each recurring export:
 
-1. Run `python3 n8n/new_workflow.py "<signal>"` (add the lemlist campaign id if the user gives it). It writes `n8n/infinite-leads-<signal>.n8n.json` with a random webhook path: the path is the only lock on that webhook, so never reuse the template's path, never commit the copy, and never print the Production URL anywhere but your call. Then walk the user through README.md, section "n8n": import that file, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
+1. Run `python3 n8n/new_workflow.py "<signal>"` (add the lemlist campaign id if the user gives it). It writes `n8n/infinite-leads-<signal>.n8n.json` with a random webhook path: the path is the only lock on that webhook, so never reuse the template's path, never commit the copy, and never print the Production URL anywhere but your call. Then walk the user through `docs/n8n.md`: import that file, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
 2. After a yes, call `connect_integration` with `type: "n8n"`, `url` (the Production URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to activate the workflow, then call `test_integration`.
 
 Give the user the opener and follow-up for each signal from [references/intent-filters.md](references/intent-filters.md) to paste into that campaign's sequence. You cannot write the sequence for them.
