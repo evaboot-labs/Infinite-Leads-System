@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Infinite Leads System signals</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script>if (new URLSearchParams(location.search).get("theme") === "dark") document.documentElement.classList.add("dark");</script>
+<style>
+  :root { --brand: #5719D9; --ink: #1A1A2E; --muted: #6B6B80; --line: #D9CCF7; --surface: #F9F7FF; --card: #FFFFFF;
+          --dot: rgba(87, 25, 217, .16); --rail: #E4DBFA; --screw: #CDBDF5; --eyebrow: #5719D9; --dash: rgba(87, 25, 217, .45); --arrow: rgba(87, 25, 217, .6);
+          --shadow: rgba(87, 25, 217, .08); }
+  .dark { --ink: #F3F0FF; --muted: #A9A3C2; --line: #2F2752; --surface: #110E1C; --card: #1A1630;
+          --dot: rgba(139, 92, 246, .22); --rail: #261F42; --screw: #3D3170; --eyebrow: #A78BFA; --dash: rgba(167, 139, 250, .5); --arrow: rgba(167, 139, 250, .7);
+          --shadow: rgba(0, 0, 0, .35); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1280px; height: 640px; overflow: hidden; }
+  body { font-family: Manrope, system-ui, sans-serif; color: var(--ink); }
+  .art { width: 1280px; height: 640px; position: relative; overflow: hidden;
+         background-color: var(--surface);
+         background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+         background-size: 24px 24px; background-position: 12px 12px; }
+  .rails { position: absolute; top: 0; bottom: 0; left: 64px; right: 64px; border-left: 1px solid var(--rail); border-right: 1px solid var(--rail); }
+  .screw { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--screw); }
+  .tl { left: 20px; top: 20px; } .tr { right: 20px; top: 20px; } .bl { left: 20px; bottom: 20px; } .br { right: 20px; bottom: 20px; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .14em; }
+  .eyebrow { position: absolute; left: 112px; top: 80px; display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--eyebrow); }
+  .eyebrow i { width: 10px; height: 10px; border-radius: 2px; background: var(--brand); }
+  h1 { position: absolute; left: 112px; top: 120px; margin: 0; font-size: 64px; line-height: 1.05; font-weight: 800; letter-spacing: -.03em; white-space: nowrap; }
+  .sub { position: absolute; left: 112px; top: 208px; margin: 0; font-size: 24px; font-weight: 500; color: var(--muted); }
+  .cards { position: absolute; left: 112px; right: 112px; top: 296px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .card { height: 264px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 24px; box-shadow: 0 10px 30px var(--shadow); display: flex; flex-direction: column; }
+  .card .k { font-size: 12px; font-weight: 600; color: var(--eyebrow); }
+  .card b { margin-top: 14px; font-size: 24px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; min-height: 2.2em; }
+  .card q { margin-top: auto; font-size: 15px; line-height: 1.4; color: var(--muted); quotes: "\201C" "\201D"; }
+  .card q u { text-decoration: none; color: var(--eyebrow); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="art">
+  <div class="rails"></div>
+  <div class="screw tl"></div><div class="screw tr"></div><div class="screw bl"></div><div class="screw br"></div>
+  <div class="eyebrow mono"><i></i>evaboot-labs · lead signals</div>
+  <h1>Four signals, four campaigns.</h1>
+  <p class="sub">One intent filter per search, one opener per campaign.</p>
+  <div class="cards">
+    <div class="card"><div class="k mono">01 · Buyer intent</div><b>Following your company</b><q>You follow <u>{{companyName}}</u> on LinkedIn, so you have probably seen what we do with <u>{{yourTopic}}</u>.</q></div>
+    <div class="card"><div class="k mono">02 · Buyer intent</div><b>Viewed your profile</b><q>Saw you checked my profile, so I'll keep this short.</q></div>
+    <div class="card"><div class="k mono">03 · Recent updates</div><b>Changed jobs</b><q>Congrats on the new role at <u>{{companyName}}</u>. The first 90 days are when most <u>{{jobTitle}}</u>s rethink <u>{{yourTopic}}</u>.</q></div>
+    <div class="card"><div class="k mono">04 · Recent updates</div><b>Posted on LinkedIn</b><q>Your recent post on <u>{{postTopic}}</u> made me think of a problem we solve for <u>{{jobTitle}}</u>s.</q></div>
+  </div>
+</div>
+</body>
+</html>
