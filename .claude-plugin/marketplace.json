@@ -1,0 +1,14 @@
+{
+  "name": "evaboot-labs-infinite-leads-system",
+  "owner": { "name": "Evaboot", "url": "https://evaboot.com" },
+  "metadata": {
+    "description": "Evaboot Labs: the Infinite Leads System as a Claude Code plugin."
+  },
+  "plugins": [
+    {
+      "name": "infinite-leads-system",
+      "source": "./",
+      "description": "Sales Navigator saved searches with intent filters, Evaboot recurring exports and outreach campaigns, set up by your agent through the Evaboot MCP server."
+    }
+  ]
+}
