@@ -35,7 +35,7 @@ Paste it into Claude Code, Codex or Cursor:
 
 ```text
 Set up the Evaboot Infinite Leads System for me.
-Clone https://github.com/evaboot-labs/Infinite-Leads-System, read AGENTS.md and follow the
+Clone https://github.com/evaboot-labs/infinite-leads-system, read AGENTS.md and follow the
 evaboot-infinite-leads-system skill. Use the Evaboot MCP server at https://mcp.evaboot.com/mcp.
 If I have no Evaboot account yet, walk me through creating one first. Ask me about my ideal
 customer and my outreach tool, and confirm with me before you save any search, list or
@@ -91,7 +91,7 @@ It asks before every change to your Sales Navigator seat or Evaboot account.
 
 ## Make
 
-[`make/infinite-leads-to-lemlist.blueprint.json`](https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/make/infinite-leads-to-lemlist.blueprint.json)
+[`make/infinite-leads-to-lemlist.blueprint.json`](https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/make/infinite-leads-to-lemlist.blueprint.json)
 is a Make scenario for one lead signal. Evaboot sends each run of the recurring export to the
 scenario's webhook, and the scenario adds every lead with an email to your lemlist campaign. Leads
 already in the campaign, or unsubscribed in lemlist, are skipped. If lemlist refuses a lead for any
@@ -114,7 +114,7 @@ same job with nothing to host.
 
 ## n8n
 
-[`n8n/infinite-leads-to-lemlist.n8n.json`](https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/n8n/infinite-leads-to-lemlist.n8n.json)
+[`n8n/infinite-leads-to-lemlist.n8n.json`](https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/n8n/infinite-leads-to-lemlist.n8n.json)
 does the same as the Make scenario, as an n8n workflow for one lead signal. Leads lemlist already
 has, or has unsubscribed, are skipped. If lemlist refuses a lead for any other reason, the execution
 fails with lemlist's reason, so you see it under **Executions** and can add that lead by hand.
@@ -166,7 +166,7 @@ Run it every Monday before the weekly exports:
 - **GitHub Actions:** in your private copy, add the `EVABOOT_API_KEY` repository secret and commit
   `signals.json`. [`.github/workflows/weekly-refresh.yml`](.github/workflows/weekly-refresh.yml)
   runs every Monday at 06:00 UTC, and **Run workflow** starts it by hand.
-- **Cron:** `0 6 * * 1 cd /path/to/Infinite-Leads-System && python3 infinite_leads.py refresh`
+- **Cron:** `0 6 * * 1 cd /path/to/infinite-leads-system && python3 infinite_leads.py refresh`
 - **Your agent's scheduler**, with the same command.
 
 ## Commands

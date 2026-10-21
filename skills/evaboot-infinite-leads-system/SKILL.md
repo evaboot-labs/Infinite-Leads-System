@@ -5,7 +5,7 @@ description: Set up the Evaboot Infinite Leads System for the user - Sales Navig
 
 # Evaboot Infinite Leads System
 
-This skill runs inside a clone of https://github.com/evaboot-labs/Infinite-Leads-System: it uses the repo's `infinite_leads.py`, `ICP.md`, README.md and the Make and n8n files. If `infinite_leads.py` is not in the working directory, clone the repo and work from there.
+This skill runs inside a clone of https://github.com/evaboot-labs/infinite-leads-system: it uses the repo's `infinite_leads.py`, `ICP.md`, README.md and the Make and n8n files. If `infinite_leads.py` is not in the working directory, clone the repo and work from there.
 
 The system is three pieces wired together, and the fourth is the result:
 
@@ -73,7 +73,7 @@ One campaign per signal, so the copy matches the reason for reaching out.
 
 ### Through Make
 
-One Make scenario per signal, from `make/infinite-leads-to-lemlist.blueprint.json` (https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/make/infinite-leads-to-lemlist.blueprint.json). It receives each run on a webhook and adds every lead with an email to one lemlist campaign. For each recurring export:
+One Make scenario per signal, from `make/infinite-leads-to-lemlist.blueprint.json` (https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/make/infinite-leads-to-lemlist.blueprint.json). It receives each run on a webhook and adds every lead with an email to one lemlist campaign. For each recurring export:
 
 1. Walk the user through README.md, section "Make", steps 1 and 2: import the blueprint, add the webhook on **New leads from Evaboot**, and paste you the webhook URL (`https://hook.<zone>.make.com/...`). A webhook URL is not a secret.
 2. After a yes, call `connect_integration` with `type: "make"`, `url` (the webhook URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to switch the scenario on, then call `test_integration`.
@@ -84,7 +84,7 @@ The blueprint targets lemlist. For another tool, the user swaps **Add the lead t
 
 ### Through n8n
 
-One n8n workflow per signal, from `n8n/infinite-leads-to-lemlist.n8n.json` (https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/n8n/infinite-leads-to-lemlist.n8n.json). It does what the Make scenario does. For each recurring export:
+One n8n workflow per signal, from `n8n/infinite-leads-to-lemlist.n8n.json` (https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/n8n/infinite-leads-to-lemlist.n8n.json). It does what the Make scenario does. For each recurring export:
 
 1. Run `python3 n8n/new_workflow.py "<signal>"` (add the lemlist campaign id if the user gives it). It writes `n8n/infinite-leads-<signal>.n8n.json` with a random webhook path: the path is the only lock on that webhook, so never reuse the template's path, never commit the copy, and never print the Production URL anywhere but your call. Then walk the user through README.md, section "n8n": import that file, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
 2. After a yes, call `connect_integration` with `type: "n8n"`, `url` (the Production URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to activate the workflow, then call `test_integration`.
