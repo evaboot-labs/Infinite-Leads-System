@@ -84,7 +84,7 @@ The blueprint targets lemlist. For another tool, the user swaps **Add the lead t
 
 One n8n workflow per signal, from `n8n/infinite-leads-to-lemlist.n8n.json` (https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/n8n/infinite-leads-to-lemlist.n8n.json). It does what the Make scenario does. For each recurring export:
 
-1. Walk the user through README.md, section "n8n": import the workflow, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, give each copy its own webhook path, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
+1. Run `python3 n8n/new_workflow.py "<signal>"` (add the lemlist campaign id if the user gives it). It writes `n8n/infinite-leads-<signal>.n8n.json` with a random webhook path: the path is the only lock on that webhook, so never reuse the template's path, never commit the copy, and never print the Production URL anywhere but your call. Then walk the user through README.md, section "n8n": import that file, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
 2. After a yes, call `connect_integration` with `type: "n8n"`, `url` (the Production URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to activate the workflow, then call `test_integration`.
 
 Give the user the opener and follow-up for each signal from [references/intent-filters.md](references/intent-filters.md) to paste into that campaign's sequence. You cannot write the sequence for them.

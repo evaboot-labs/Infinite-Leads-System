@@ -13,7 +13,7 @@
       "parameters": {
         "width": 400,
         "height": 600,
-        "content": "## Infinite Leads: new leads to lemlist\n\nEvaboot sends each run of one recurring export to this webhook. Every lead with an email joins your lemlist campaign.\n\n1. Open **New leads from Evaboot** and copy the **Production URL**. Give it to your agent: it connects the URL to the recurring export for this signal.\n2. Open **Your settings** and paste the lemlist campaign id (the `cam_...` part of the campaign's URL). Open **Add the lead to the campaign** and connect your lemlist account (lemlist API key).\n3. Activate the workflow.\n\nLeads lemlist already has, or has unsubscribed, are skipped. Any other refusal fails the execution, so you see it and can retry it under **Executions**: Evaboot never sends the same batch twice.\n\nImport it once per signal, so each signal keeps its own campaign."
+        "content": "## Infinite Leads: new leads to lemlist\n\nEvaboot sends each run of one recurring export to this webhook. Every lead with an email joins your lemlist campaign.\n\n1. Open **New leads from Evaboot** and replace the path with a long random string (your agent's `n8n/new_workflow.py` does it for you). Anyone who knows the URL can add leads to your campaign, so keep it secret. Copy the **Production URL** and give it to your agent: it connects the URL to the recurring export for this signal.\n2. Open **Your settings** and paste the lemlist campaign id (the `cam_...` part of the campaign's URL). Open **Add the lead to the campaign** and connect your lemlist account (lemlist API key).\n3. Activate the workflow.\n\nLeads lemlist already has, or has unsubscribed, are skipped. Any other refusal fails the execution, so you see it and can retry it under **Executions**: Evaboot never sends the same batch twice.\n\nImport it once per signal, each with its own random path, so each signal keeps its own campaign."
       }
     },
     {
@@ -28,7 +28,7 @@
       "webhookId": "2f6c1d8e-7a4b-4c1e-9f3d-5b8a0e2c4d61",
       "parameters": {
         "httpMethod": "POST",
-        "path": "infinite-leads",
+        "path": "replace-with-a-random-string",
         "options": {}
       }
     },
