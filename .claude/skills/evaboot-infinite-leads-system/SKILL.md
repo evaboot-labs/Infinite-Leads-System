@@ -39,7 +39,7 @@ If they have no account, walk them through it one step at a time and wait for ea
 Then check the setup:
 
 1. Call `verify_token` and `get_daily_export_quota`. `has_valid_salesnav` must be true; if it is false, send them back to step 2 above. If `credits` is 0, tell them each recurring run spends credits for the leads it finds and send them to [dash.evaboot.com/dash/pricing/](https://dash.evaboot.com/dash/pricing/).
-2. Ask how the leads should reach the campaign: **directly** (Evaboot's lemlist or Instantly integration, the default) or **through Make** (when they want to filter, enrich or route leads in Make first). For directly, call `list_integrations` and look for a row of type `lemlist` or `instantly`. If neither is there, send the user to https://dash.evaboot.com/dash/integrations/providers/lemlist/connect/ (or `/instantly/connect/`) to connect it with their own API key, and wait. For Make, nothing to connect yet: step 2 covers it.
+2. Ask how the leads should reach the campaign: **directly** (Evaboot's lemlist or Instantly integration, the default), or **through Make** or **through n8n** (when they want to filter, enrich or route leads there first). For directly, call `list_integrations` and look for a row of type `lemlist` or `instantly`. If neither is there, send the user to https://dash.evaboot.com/dash/integrations/providers/lemlist/connect/ (or `/instantly/connect/`) to connect it with their own API key, and wait. For Make or n8n, nothing to connect yet: step 2 covers it.
 3. Read `ICP.md` in this repo. If it still holds the example, interview the user and rewrite it: who they sell to (job titles, seniority, company size, industry, geography), what they sell, and which outreach tool they use.
 
 ## Step 1: one saved search per lead signal
@@ -79,6 +79,13 @@ One Make scenario per signal, from `make/infinite-leads-to-lemlist.blueprint.jso
 4. The user switches the scenario on. Make's free plan runs two active scenarios, so with more than two signals they need a paid plan or one shared campaign.
 
 The blueprint targets lemlist. For another tool, the user swaps **Add the lead to the campaign** for that tool's module in Make.
+
+### Through n8n
+
+One n8n workflow per signal, from `n8n/infinite-leads-to-lemlist.n8n.json` (https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/n8n/infinite-leads-to-lemlist.n8n.json). It does what the Make scenario does. For each recurring export:
+
+1. Walk the user through README.md, section "n8n": import the workflow, fill in **Your settings**, connect lemlist on **Add the lead to the campaign**, give each copy its own webhook path, and paste you the **Production URL** of **New leads from Evaboot**. Never ask them to paste the lemlist key to you.
+2. After a yes, call `connect_integration` with `type: "n8n"`, `url` (the Production URL), `auto: true`, `label: "Infinite Leads · <signal>"`, `source: "recurring"` and `recurring_ids: [<recurring export id>]`. If `next` is `test`, ask the user to activate the workflow, then call `test_integration`.
 
 Give the user the opener and follow-up for each signal from [references/intent-filters.md](references/intent-filters.md) to paste into that campaign's sequence. You cannot write the sequence for them.
 

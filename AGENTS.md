@@ -6,7 +6,7 @@ This repo sets up the Evaboot Infinite Leads System: Sales Navigator saved searc
 2. Follow the skill in `.claude/skills/evaboot-infinite-leads-system/SKILL.md` step by step. Read `ICP.md` first and interview the user if it still holds the example.
 3. Use `python3 infinite_leads.py lead-url` to add industry, company size or account-list filters to a search URL. Never put an industry in a people request to the search builder.
 4. Confirm with the user before every call that saves a search, a list, a recurring export or a destination.
-5. If the user sends leads through Make, follow the skill's step 2, "Through Make", and README.md, section "Make". The user pastes the webhook URL to you and their lemlist key into Make, never to you.
+5. If the user sends leads through Make or n8n, follow the skill's step 2, "Through Make" or "Through n8n", and the matching README.md section. The user pastes the webhook URL to you and their lemlist key into Make or n8n, never to you.
 6. Finish with `python3 infinite_leads.py check` and a table of what was set up.
 
-Never ask for or handle a lemlist, Instantly or other tool's API key: the user connects those in Evaboot or in Make. Never commit `.env`.
+Never ask for or handle a lemlist, Instantly or other tool's API key: the user connects those in Evaboot, Make or n8n. Never commit `.env`.

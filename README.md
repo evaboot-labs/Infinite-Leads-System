@@ -34,8 +34,8 @@ customer and my outreach tool, and confirm with me before you save any search, l
 recurring export.
 ```
 
-Sending the leads through Make instead? Use the Make prompt on [the guide](https://evaboot.com/guides/infinite-leads),
-or see [Make](#make) below.
+Sending the leads through Make or n8n instead? Use that tab's prompt on [the guide](https://evaboot.com/guides/infinite-leads),
+or see [Make](#make) and [n8n](#n8n) below.
 
 ## What you need
 
@@ -43,7 +43,7 @@ or see [Make](#make) below.
 - **LinkedIn Sales Navigator**, connected to Evaboot with the [Evaboot Chrome extension](https://dash.evaboot.com/install/).
 - **lemlist or Instantly**, connected once in Evaboot under
   [Integrations](https://dash.evaboot.com/dash/integrations/). Evaboot pushes every new batch into the campaign you pick.
-  With Make, you connect lemlist in the scenario instead.
+  With Make or n8n, you connect lemlist in the scenario or workflow instead.
 - **An AI agent** that speaks MCP: Claude Code, Codex, Cursor, or Claude and ChatGPT with a connector.
 
 ## Setup
@@ -76,7 +76,7 @@ The skill, [`.claude/skills/evaboot-infinite-leads-system/SKILL.md`](.claude/ski
    profile recently, Changed jobs, Posted on LinkedIn), built from your ICP, then made a weekly
    recurring export.
 2. **Campaigns.** Each recurring export is sent to its own lemlist or Instantly campaign, directly
-   or through Make, with the opener and follow-up for that signal from
+   or through Make or n8n, with the opener and follow-up for that signal from
    [`intent-filters.md`](.claude/skills/evaboot-infinite-leads-system/references/intent-filters.md).
 
 It asks before every change to your Sales Navigator seat or Evaboot account.
@@ -103,6 +103,21 @@ same job with nothing to host.
    active scenarios.
 
 `make/build_blueprint.py` writes the blueprint; `--test` fills in real values for a test run.
+
+## n8n
+
+[`n8n/infinite-leads-to-lemlist.n8n.json`](https://raw.githubusercontent.com/evaboot-labs/Infinite-Leads-System/main/n8n/infinite-leads-to-lemlist.n8n.json)
+does the same as the Make scenario, as an n8n workflow for one lead signal. Leads lemlist already
+has, or has unsubscribed, are skipped. If lemlist refuses a lead for any other reason, the execution
+fails with lemlist's reason, so you see it under **Executions** and can add that lead by hand.
+
+1. In n8n, create a workflow, open the **⋯** menu and choose **Import from URL** with the link above
+   (or **Import from file**).
+2. Open **Your settings** and paste the lemlist campaign id (the `cam_...` part of the campaign's URL).
+3. Open **Add the lead to the campaign** and connect your lemlist account with your lemlist API key.
+4. Open **New leads from Evaboot**, copy the **Production URL** and give it to your agent: it connects
+   that URL to the recurring export for this signal. Then activate the workflow.
+5. Import it once per signal, and change the webhook path in each copy so every signal has its own URL.
 
 ## Do it by hand
 
