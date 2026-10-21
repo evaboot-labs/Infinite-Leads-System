@@ -1,37 +1,24 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
+  <img src=".github/assets/banner-light.png" alt="Sales Navigator saved search, Evaboot recurring export, any outreach tool, closed deals: a new batch of leads every week" width="1280">
+</picture>
+
 # The Infinite Leads System
 
-Never run out of qualified leads. Wire LinkedIn Sales Navigator, Evaboot and your outreach tool
-into one machine that delivers fresh, in-market prospects every week.
+Never run out of qualified leads. Sales Navigator finds them, Evaboot exports only the new ones every week, and your outreach tool contacts them.
 
-```
-Sales Navigator         Evaboot                 Outreach campaign      Closed
-saved search      ──>   recurring export  ──>   lemlist / Instantly ──> deals
-+ one intent filter     only new leads,         one campaign
-                        every week              per signal
-```
+[![Works with Claude Code · Codex · Cursor](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-5719D9)](AGENTS.md)
+[![MCP server](https://img.shields.io/badge/MCP-mcp.evaboot.com-5719D9)](https://evaboot.com/mcp)
+[![License: MIT](https://img.shields.io/badge/license-MIT-5719D9)](LICENSE)
+[![Use this template](https://img.shields.io/badge/template-use%20this%20template-5719D9)](https://github.com/evaboot-labs/infinite-leads-system/generate)
 
-1. **A Sales Navigator saved search** with one intent filter keeps tracking every new person who matches.
-2. **An Evaboot recurring export** re-runs it daily, weekly or monthly. Each run returns only the leads added since the last one.
-3. **Your outreach campaign** in lemlist or Instantly receives every new batch, with copy written for the reason you are reaching out now.
-4. **You close deals.**
+[![An AI Agent builds a Sales Navigator search and a weekly Evaboot export, then shows the check table](.github/assets/demo.gif)](.github/assets/demo.mp4)
 
-Give this repo to your AI agent (Claude Code, Codex, Cursor) and it sets the whole system up through
-the [Evaboot MCP server](https://evaboot.com/mcp). The full guide, with screenshots:
-[evaboot.com/guides/infinite-leads](https://evaboot.com/guides/infinite-leads).
+<sub>The full run, at real speed: [demo.mp4](.github/assets/demo.mp4)</sub>
 
-Built by [Evaboot](https://evaboot.com). More workflows: [github.com/evaboot-labs](https://github.com/evaboot-labs).
+## Set it up in one prompt
 
-## Agent skill
-
-The setup is an agent skill:
-[`skills/evaboot-infinite-leads-system/SKILL.md`](skills/evaboot-infinite-leads-system/SKILL.md).
-Claude Code finds it through `.claude/skills` and Codex through `.agents/skills`, both links to
-`skills/`. The rest of the repo is what the skill works with: the search URL helper, the Make and
-n8n workflows, the weekly refresh and the MCP config. Run it from a clone of this repo.
-
-## The fastest way: paste this prompt
-
-Paste it into Claude Code, Codex or Cursor:
+Paste this into Claude Code, Codex or Cursor:
 
 ```text
 Set up the Evaboot Infinite Leads System for me.
@@ -42,145 +29,65 @@ customer and my outreach tool, and confirm with me before you save any search, l
 recurring export.
 ```
 
-Sending the leads through Make or n8n instead? Use that tab's prompt on [the guide](https://evaboot.com/guides/infinite-leads),
-or see [Make](#make) and [n8n](#n8n) below.
+<details>
+<summary>Or install the skill</summary>
+
+Claude Code:
+
+```text
+/plugin marketplace add evaboot-labs/infinite-leads-system
+/plugin install infinite-leads-system@evaboot-labs-infinite-leads-system
+```
+
+Codex, Cursor and other agents:
+
+```bash
+npx skills add evaboot-labs/infinite-leads-system
+```
+
+</details>
+
+## How it works
+
+**1. Save a search.** One intent filter keeps it tracking new people.
+
+<img src=".github/assets/screenshots/1-saved-search.png" alt="A Sales Navigator saved search with the Changed jobs filter" width="800">
+
+**2. Export it weekly.** Each run returns only the leads added since the last one.
+
+<img src=".github/assets/screenshots/2-recurring-export.png" alt="The Recurring tab of Sales Nav Exports in Evaboot" width="800">
+
+**3. Send it to a campaign.** Every batch lands in your outreach tool, one campaign per signal.
+
+<img src=".github/assets/screenshots/3-outreach-tool.png" alt="Evaboot integrations, with lemlist as the outreach tool" width="800">
+
+## Four signals, four campaigns
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/signals-dark.png">
+  <img src=".github/assets/signals-light.png" alt="Four lead signals, each with its opener: following your company, viewed your profile, changed jobs, posted on LinkedIn" width="1280">
+</picture>
+
+Each signal gets its own saved search, recurring export and campaign, with copy written for the reason you are reaching out now: [intent-filters.md](skills/evaboot-infinite-leads-system/references/intent-filters.md).
 
 ## What you need
 
-- **An Evaboot account.** No account yet? [Create one](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo), or just paste the prompt: your agent walks you through sign-up first. Each recurring run spends credits for the leads it finds.
-- **LinkedIn Sales Navigator**, connected to Evaboot with the [Evaboot Chrome extension](https://dash.evaboot.com/install/).
-- **lemlist or Instantly**, connected once in Evaboot under
-  [Integrations](https://dash.evaboot.com/dash/integrations/). Evaboot pushes every new batch into the campaign you pick.
-  With Make or n8n, you connect lemlist in the scenario or workflow instead.
-- **An AI agent** that speaks MCP: Claude Code, Codex, Cursor, or Claude and ChatGPT with a connector.
+- **An Evaboot account.** [Create one](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo), or paste the prompt and your agent walks you through sign-up.
+- **LinkedIn Sales Navigator**, connected with the [Evaboot Chrome extension](https://dash.evaboot.com/install/).
+- **Any outreach tool.** lemlist and Instantly connect in Evaboot under [Integrations](https://dash.evaboot.com/dash/integrations/); any other tool works through [Make](docs/make.md) or [n8n](docs/n8n.md).
+- **An AI Agent that speaks MCP:** Claude Code, Codex, Cursor, or Claude and ChatGPT with a connector.
+- **Cost:** Evaboot credits for the leads each run finds. The MCP server and this repo are free.
 
-## Setup
+## Go further
 
-1. **Create your Evaboot account** at [dash.evaboot.com](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo) and install the [Chrome extension](https://dash.evaboot.com/install/) to connect Sales Navigator.
-2. **Get the repo.** Click **Use this template** to make your own private copy, then clone it.
-3. **Connect the Evaboot MCP server.** Copy your API key from
-   [dash.evaboot.com/dash/api/](https://dash.evaboot.com/dash/api/), then:
-   ```bash
-   cp .env.example .env          # paste the key after EVABOOT_API_KEY=
-   export EVABOOT_API_KEY=...    # same key, for your agent
-   ```
-   - **Claude Code** reads `.mcp.json` in this folder and uses `EVABOOT_API_KEY` from your environment.
-   - **Codex:** `codex mcp add evaboot --url https://mcp.evaboot.com/mcp --bearer-token-env-var EVABOOT_API_KEY`
-   - **Cursor:** add `https://mcp.evaboot.com/mcp` with the header `Authorization: Bearer <your key>`.
-   - **Claude or ChatGPT on the web:** add `https://mcp.evaboot.com/mcp` as a custom connector and sign in.
-4. **Describe who you sell to** in [`ICP.md`](ICP.md), or let your agent ask you.
-5. **Check** (Python 3.9+, no packages to install):
-   ```bash
-   python3 infinite_leads.py check
-   ```
-
-Then ask your agent: **"Set up the Infinite Leads System."**
-
-## What the agent does
-
-The skill, [`skills/evaboot-infinite-leads-system/SKILL.md`](skills/evaboot-infinite-leads-system/SKILL.md), walks the agent through:
-
-1. **Lead signals.** One Sales Navigator search per intent filter (Following your company, Viewed your
-   profile recently, Changed jobs, Posted on LinkedIn), built from your ICP, then made a weekly
-   recurring export.
-2. **Campaigns.** Each recurring export is sent to its own lemlist or Instantly campaign, directly
-   or through Make or n8n, with the opener and follow-up for that signal from
-   [`intent-filters.md`](skills/evaboot-infinite-leads-system/references/intent-filters.md).
-
-It asks before every change to your Sales Navigator seat or Evaboot account.
-
-## Make
-
-[`make/infinite-leads-to-lemlist.blueprint.json`](https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/make/infinite-leads-to-lemlist.blueprint.json)
-is a Make scenario for one lead signal. Evaboot sends each run of the recurring export to the
-scenario's webhook, and the scenario adds every lead with an email to your lemlist campaign. Leads
-already in the campaign, or unsubscribed in lemlist, are skipped. If lemlist refuses a lead for any
-other reason, Make keeps it under **Incomplete executions** so you can retry it: Evaboot never sends
-the same batch twice. Use it when you want to filter, enrich or route leads in Make
-before they reach the campaign; otherwise Evaboot's own lemlist and Instantly integrations do the
-same job with nothing to host.
-
-1. In Make, create a scenario, open the **⋮** menu and choose **Import blueprint**, then pick the
-   file (or download it from the link above first).
-2. Click **New leads from Evaboot**, then **Add** to create a webhook, and copy its URL.
-   Give that URL to your agent: it connects it to the recurring export for this signal.
-3. Open **Your settings** and fill in your lemlist API key (lemlist, **Settings**, **Integrations**)
-   and the campaign id (the `cam_...` part of the campaign's URL in lemlist).
-4. Switch the scenario on. It runs each time Evaboot sends a batch.
-5. Import it once per signal, so each signal keeps its own campaign. Make's free plan runs two
-   active scenarios.
-
-`make/build_blueprint.py` writes the blueprint; `--test` fills in real values for a test run.
-
-## n8n
-
-[`n8n/infinite-leads-to-lemlist.n8n.json`](https://raw.githubusercontent.com/evaboot-labs/infinite-leads-system/main/n8n/infinite-leads-to-lemlist.n8n.json)
-does the same as the Make scenario, as an n8n workflow for one lead signal. Leads lemlist already
-has, or has unsubscribed, are skipped. If lemlist refuses a lead for any other reason, the execution
-fails with lemlist's reason, so you see it under **Executions** and can add that lead by hand.
-
-1. Make one copy per signal with a secret webhook path: `python3 n8n/new_workflow.py "Changed jobs"`
-   writes `n8n/infinite-leads-changed-jobs.n8n.json` (git ignores it). Anyone who knows a webhook's
-   URL can add leads to your campaign, and Evaboot cannot send a secret header, so the random path is
-   the lock. No Python? Import the link above and replace the path in **New leads from Evaboot** with a
-   long random string yourself.
-2. In n8n, create a workflow, open the **⋯** menu and choose **Import from File** with that copy.
-3. Open **Your settings** and paste the lemlist campaign id (the `cam_...` part of the campaign's URL).
-4. Open **Add the lead to the campaign** and connect your lemlist account with your lemlist API key.
-5. Open **New leads from Evaboot**, copy the **Production URL** and give it to your agent: it connects
-   that URL to the recurring export for this signal. Then activate the workflow.
-
-## Do it by hand
-
-No agent? The same system takes ten minutes in the browser:
-
-1. In Sales Navigator, build your lead search (job titles, seniority, company size, geography), add
-   **one** intent filter from **Buyer intent** or **Recent updates**, and save it.
-2. In Evaboot, open **Sales Nav Exports**, then the **Recurring** tab, and click **Create Recurring
-   Export** on that saved search. Pick the frequency.
-3. Under **Integrations**, connect lemlist or Instantly and send the recurring export to a campaign.
-
-## Extra: company signals
-
-Hiring on LinkedIn, senior leadership changes, funding events and headcount growth belong to the
-company, so they live in a Sales Navigator **account** search. A lead search can filter on an account
-list, but an account list is a snapshot: it never adds the companies that match later. That makes
-company signals harder to keep running than lead signals, so the skill sets up lead signals first
-and offers company signals only when you ask for them.
-
-By hand: save the account search, add its results to an account list, filter a lead search on that
-list with **Account lists**, make that lead search a recurring export, and add the new matching
-companies to the list every week.
-
-This repo can do the weekly part for you. `signals.json` lists each company signal: its account
-search, its account list, and a cap; [`signals.example.json`](signals.example.json) shows the shape.
-
-```bash
-python3 infinite_leads.py refresh --dry-run   # count today's matches, change nothing
-python3 infinite_leads.py refresh             # add the new companies to each list
-```
-
-Adding a company that is already on the list does nothing, so the refresh is safe to run any time.
-Run it every Monday before the weekly exports:
-
-- **GitHub Actions:** in your private copy, add the `EVABOOT_API_KEY` repository secret and commit
-  `signals.json`. [`.github/workflows/weekly-refresh.yml`](.github/workflows/weekly-refresh.yml)
-  runs every Monday at 06:00 UTC, and **Run workflow** starts it by hand.
-- **Cron:** `0 6 * * 1 cd /path/to/infinite-leads-system && python3 infinite_leads.py refresh`
-- **Your agent's scheduler**, with the same command.
-
-## Commands
-
-| Command | Does |
+| Page | For |
 |---|---|
-| `python3 infinite_leads.py check` | API key, quota, recurring exports and their destinations |
-| `python3 infinite_leads.py lead-url URL [--industry ID] [--headcount CODE] [--account-list ID]` | Adds industry, company size or account-list filters to a lead search URL |
-| `python3 infinite_leads.py refresh [--dry-run] [--only NAME]` | Company signals: adds newly matching companies to each signal's account list |
+| [Connect your agent by hand](docs/connect-your-agent.md) | The MCP setup for each agent, `ICP.md` and the `check` command |
+| [Make scenario](docs/make.md) | Filter, enrich or route leads in Make before the campaign |
+| [n8n workflow](docs/n8n.md) | The same, in n8n |
+| [Company signals](docs/company-signals.md) | Hiring, funding, leadership changes and headcount growth through account lists, plus every command |
+| [Do it by hand](docs/manual-setup.md) | Ten minutes in the browser, no agent |
 
-## Cost
+---
 
-Evaboot credits for the leads each run finds. The MCP server and this repo are free.
-
-## License
-
-MIT
+Agents: start at [AGENTS.md](AGENTS.md) · Built by [Evaboot](https://evaboot.com) · More workflows at [github.com/evaboot-labs](https://github.com/evaboot-labs) · [MIT license](LICENSE)
