@@ -11,7 +11,7 @@ The system is three pieces wired together, and the fourth is the result:
 
 1. **Sales Navigator saved search** with one intent filter: it keeps tracking every new person who matches.
 2. **Evaboot recurring export** of that search: daily, weekly or monthly, each run returns only the leads added since the last one.
-3. **Outreach campaign** in lemlist or Instantly: every new batch lands there automatically.
+3. **Outreach campaign** in any outreach tool (lemlist or Instantly directly, any other tool through Make or n8n): every new batch lands there automatically.
 4. **Close deals.**
 
 You do it all through the Evaboot MCP server (`https://mcp.evaboot.com/mcp`). Every tool named below is an Evaboot MCP tool.

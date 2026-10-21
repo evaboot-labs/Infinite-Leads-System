@@ -1,6 +1,6 @@
 # Agent instructions
 
-This repo sets up the Evaboot Infinite Leads System: Sales Navigator saved searches with intent filters, Evaboot recurring exports that return only new leads, and lemlist or Instantly campaigns that receive each batch. Lead signals come first; company signals through account lists are an optional extra. When the user asks to set it up, add a signal, or refresh their account lists:
+This repo sets up the Evaboot Infinite Leads System: Sales Navigator saved searches with intent filters, Evaboot recurring exports that return only new leads, and campaigns in any outreach tool that receive each batch (lemlist or Instantly directly, any other tool through Make or n8n). Lead signals come first; company signals through account lists are an optional extra. When the user asks to set it up, add a signal, or refresh their account lists:
 
 1. If the Evaboot MCP tools (such as `verify_token`) are not available, the user most likely has no Evaboot account yet. Follow step 0 of the skill: create the account at https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo, install the Chrome extension, put the API key in `.env`, connect the MCP server, restart the session.
 2. Follow the skill in `skills/evaboot-infinite-leads-system/SKILL.md` step by step. Read `ICP.md` first and interview the user if it still holds the example.
