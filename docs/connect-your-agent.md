@@ -2,8 +2,8 @@
 
 The prompt in the README does all of this for you. These are the same steps, for when you want to do them yourself.
 
-1. **Create your Evaboot account** at [dash.evaboot.com](https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo) and install the [Chrome extension](https://dash.evaboot.com/install/) to connect Sales Navigator.
-2. **Get the repo.** Click **[Use this template](https://github.com/evaboot-labs/infinite-leads-system/generate)** to make your own private copy, then clone it.
+1. **Create your Evaboot account** at [dash.evaboot.com](https://dash.evaboot.com/accounts/signup/?last_click_origin=unlimited-leads-repo) and install the [Chrome extension](https://dash.evaboot.com/install/) to connect Sales Navigator.
+2. **Get the repo.** Click **[Use this template](https://github.com/evaboot-labs/unlimited-leads-system/generate)** to make your own private copy, then clone it.
 3. **Connect the Evaboot MCP server.** Copy your API key from
    [dash.evaboot.com/dash/api/](https://dash.evaboot.com/dash/api/), then:
    ```bash
@@ -17,9 +17,9 @@ The prompt in the README does all of this for you. These are the same steps, for
 4. **Describe who you sell to** in [`ICP.md`](../ICP.md), or let your agent ask you.
 5. **Check** (Python 3.9+, no packages to install):
    ```bash
-   python3 infinite_leads.py check
+   python3 unlimited_leads.py check
    ```
 
-Then ask your agent: **"Set up the Infinite Leads System."**
+Then ask your agent: **"Set up the Unlimited Leads System."**
 
 Back to the [README](../README.md).

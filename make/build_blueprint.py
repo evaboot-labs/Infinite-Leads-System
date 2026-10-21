@@ -1,5 +1,5 @@
 """Build the Make blueprint. Run: python3 make/build_blueprint.py
-Writes make/infinite-leads-to-lemlist.blueprint.json (the public template).
+Writes make/unlimited-leads-to-lemlist.blueprint.json (the public template).
 With --test OUT CAMPAIGN_ID it writes a filled copy to OUT, reading the key from LEMLIST_API_KEY.
 
 The scenario receives every run of one recurring Evaboot export on a Make webhook and adds each lead
@@ -59,7 +59,7 @@ def blueprint(api_key, campaign_id):
                   [{"a": "{{4.error.detail}}", "b": "graveyard", "o": "text:contain:ci"}]]},
               "metadata": {"designer": {"x": 1200, "y": 150, "name": "Skip leads lemlist already has"}}}]},
     ]
-    return {"name": "Infinite Leads: new leads to a lemlist campaign", "flow": flow,
+    return {"name": "Unlimited Leads: new leads to a lemlist campaign", "flow": flow,
             "metadata": {"instant": True, "version": 1,
                          "scenario": {"roundtrips": 1, "maxErrors": 3, "autoCommit": True, "sequential": False,
                                       "confidential": False, "dataloss": False, "dlq": True},
@@ -72,6 +72,6 @@ if __name__ == "__main__":
         Path(out).write_text(json.dumps(blueprint(os.environ["LEMLIST_API_KEY"], campaign_id)))
         print(f"Wrote {out}")
     else:
-        out = HERE / "infinite-leads-to-lemlist.blueprint.json"
+        out = HERE / "unlimited-leads-to-lemlist.blueprint.json"
         out.write_text(json.dumps(blueprint("YOUR_LEMLIST_API_KEY", "YOUR_LEMLIST_CAMPAIGN_ID"), indent=2) + "\n")
         print(f"Wrote {out}")

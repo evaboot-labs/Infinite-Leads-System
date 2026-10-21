@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Infinite Leads System: check your setup and refresh account lists from their signal searches.
+"""The Unlimited Leads System: check your setup and refresh account lists from their signal searches.
 
 Sales Navigator account lists are snapshots: they never add the companies that start matching
 later. Every lead search filtered on such a list therefore goes stale. `refresh` re-reads each
@@ -23,7 +23,7 @@ MCP_URL = "https://mcp.evaboot.com/mcp"
 ROOT = Path(__file__).resolve().parent
 SIGNALS_FILE = ROOT / "signals.json"
 PAGE = 100
-DESCRIPTION = "Check your Infinite Leads setup and refresh account lists from their signal searches."
+DESCRIPTION = "Check your Unlimited Leads setup and refresh account lists from their signal searches."
 ADD_BATCH = 999
 
 
@@ -45,7 +45,7 @@ def call(tool, arguments):
         sys.exit(
             "EVABOOT_API_KEY is missing. Copy .env.example to .env and add the key from "
             "https://dash.evaboot.com/dash/api/ (no account yet: "
-            "https://dash.evaboot.com/accounts/signup/?last_click_origin=infinite-leads-repo)."
+            "https://dash.evaboot.com/accounts/signup/?last_click_origin=unlimited-leads-repo)."
         )
     body = json.dumps(
         {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": tool, "arguments": arguments}}
