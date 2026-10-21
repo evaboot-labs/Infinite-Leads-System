@@ -115,11 +115,13 @@ def refresh(dry_run, only):
         if start >= page.get("paging", {}).get("total", 0) or not page.get("elements"):
             break
 
+    missing = []
     for signal in signals:
         list_id = str(signal["account_list_id"])
         current = lists.get(list_id)
         if current is None:
-            print(f"SKIP  {signal['name']}: account list {list_id} no longer exists in Sales Navigator.")
+            print(f"FAIL  {signal['name']}: account list {list_id} no longer exists. Fix account_list_id in signals.json.")
+            missing.append(signal["name"])
             continue
         ids = account_ids(signal["account_search_url"], int(signal.get("max_accounts", 1000)))
         if dry_run:
@@ -136,6 +138,9 @@ def refresh(dry_run, only):
             f"OK    {signal['name']}: {len(ids)} companies match, list went from "
             f"{current['entityCount']} to {after['entityCount']} companies."
         )
+    # A scheduled run must fail visibly, or a deleted list silently stops receiving companies.
+    if missing:
+        sys.exit(f"{len(missing)} signal(s) point to a missing account list: {', '.join(missing)}")
 
 
 def lead_url(base_url, industries, headcounts, account_list):
