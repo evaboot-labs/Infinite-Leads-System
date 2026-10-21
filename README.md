@@ -21,6 +21,14 @@ the [Evaboot MCP server](https://evaboot.com/mcp). The full guide, with screensh
 
 Built by [Evaboot](https://evaboot.com). More workflows: [github.com/evaboot-labs](https://github.com/evaboot-labs).
 
+## Agent skill
+
+The setup is an agent skill:
+[`skills/evaboot-infinite-leads-system/SKILL.md`](skills/evaboot-infinite-leads-system/SKILL.md).
+Claude Code finds it through `.claude/skills` and Codex through `.agents/skills`, both links to
+`skills/`. The rest of the repo is what the skill works with: the search URL helper, the Make and
+n8n workflows, the weekly refresh and the MCP config. Run it from a clone of this repo.
+
 ## The fastest way: paste this prompt
 
 Paste it into Claude Code, Codex or Cursor:
@@ -70,14 +78,14 @@ Then ask your agent: **"Set up the Infinite Leads System."**
 
 ## What the agent does
 
-The skill, [`.claude/skills/evaboot-infinite-leads-system/SKILL.md`](.claude/skills/evaboot-infinite-leads-system/SKILL.md), walks the agent through:
+The skill, [`skills/evaboot-infinite-leads-system/SKILL.md`](skills/evaboot-infinite-leads-system/SKILL.md), walks the agent through:
 
 1. **Lead signals.** One Sales Navigator search per intent filter (Following your company, Viewed your
    profile recently, Changed jobs, Posted on LinkedIn), built from your ICP, then made a weekly
    recurring export.
 2. **Campaigns.** Each recurring export is sent to its own lemlist or Instantly campaign, directly
    or through Make or n8n, with the opener and follow-up for that signal from
-   [`intent-filters.md`](.claude/skills/evaboot-infinite-leads-system/references/intent-filters.md).
+   [`intent-filters.md`](skills/evaboot-infinite-leads-system/references/intent-filters.md).
 
 It asks before every change to your Sales Navigator seat or Evaboot account.
 

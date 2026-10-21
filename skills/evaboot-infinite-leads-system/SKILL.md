@@ -5,6 +5,8 @@ description: Set up the Evaboot Infinite Leads System for the user - Sales Navig
 
 # Evaboot Infinite Leads System
 
+This skill runs inside a clone of https://github.com/evaboot-labs/Infinite-Leads-System: it uses the repo's `infinite_leads.py`, `ICP.md`, README.md and the Make and n8n files. If `infinite_leads.py` is not in the working directory, clone the repo and work from there.
+
 The system is three pieces wired together, and the fourth is the result:
 
 1. **Sales Navigator saved search** with one intent filter: it keeps tracking every new person who matches.
