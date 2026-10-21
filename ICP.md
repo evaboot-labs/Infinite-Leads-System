@@ -19,4 +19,4 @@ Example: Evaboot exports Sales Navigator leads with verified emails, so sales te
 - **Tool:** lemlist
 - **Cadence:** weekly
 - **Leads per search:** 200
-- **Signals:** Changed jobs, Posted on LinkedIn, Hiring on LinkedIn
+- **Signals:** Changed jobs, Posted on LinkedIn
